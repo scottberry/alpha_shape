@@ -6,4 +6,3 @@ if __name__ == '__main__':
 
     out = alpha_shape.filter_vertices(my_list, 0.1)
     print len(my_list), len(out)
-    print out

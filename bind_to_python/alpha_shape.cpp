@@ -1,9 +1,6 @@
 #include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
 #include <CGAL/Delaunay_triangulation_3.h>
 #include <CGAL/Alpha_shape_3.h>
-#include <iterator>
-#include <list>
-#include <cassert>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
@@ -21,7 +18,7 @@ namespace py = pybind11;
 
 Tuple_list filter_vertices(Tuple_list const &input, double alpha)
 {
-  /* Read input from a list of 3-tuples */
+  // Read input from a list of 3-tuples
   std::list<Point> lp;
   for (auto iit = input.begin(); iit != input.end(); ++iit) {
     Point p(std::get<0>(*iit), std::get<1>(*iit), std::get<2>(*iit));
@@ -50,5 +47,7 @@ Tuple_list filter_vertices(Tuple_list const &input, double alpha)
 
 PYBIND11_MODULE(alpha_shape, m) {
     m.doc() = "CGAL Alpha_Shape_3 minimal interface";
-    m.def("filter_vertices", &filter_vertices, "A function which filters a list of vertices depending on whether they form part of the alpha_shape");
+    m.def("filter_vertices", &filter_vertices, "A function which filters"
+      " a list of vertices depending on whether they form part of the"
+      " alpha_shape");
 }
